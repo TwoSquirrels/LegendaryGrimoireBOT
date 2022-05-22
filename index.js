@@ -72,6 +72,7 @@ client.on("interactionCreate", async (interaction) => {
       const steps = (
         options.getString("steps") ?? "nml,nml,nml,grj,mhr,cjp"
       ).split(",");
+      if (steps.length > 16) throw new Error("最長は 16 連です。");
       for (const step of steps)
         if (!Object.keys(converters).includes(step))
           throw new Error(`${step} というコンバータはありません。`);
@@ -172,7 +173,7 @@ client.once("ready", async () => {
         {
           type: "STRING",
           name: "steps",
-          description: "デフォルト:nml,nml,nml,grj,mhr,cjp",
+          description: "16連まで,デフォルト:nml,nml,nml,grj,mhr,cjp",
           required: false,
         },
       ],
