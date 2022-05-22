@@ -17,7 +17,20 @@ dotenv.config();
 const converters = {
   cjp: [require("cjp").generate],
   mhr: [require("genhera").generate],
-  nml: [require("nomlish").translate],
+  nml: [
+    async (text, level) => {
+      const response = await axios({
+        method: "post",
+        url: "https://www.nomlish.tk/api/translate",
+        data: {
+          text,
+          level,
+        },
+      });
+      if (response.data.status !== 0) throw "translation is not possible";
+      return response.data.result;
+    }
+  ],
   grj: [
     async (text, languages) => {
       const response = await axios.get(
