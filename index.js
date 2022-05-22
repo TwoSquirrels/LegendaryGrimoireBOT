@@ -14,6 +14,13 @@ const Converter = require("submarin-converter-core").SC;
 
 dotenv.config();
 
+if (process.env.REPLIT_ENVIRONMENT === "production") {
+  const express = require("express");
+  const server = express();
+  server.get("/", (_req, res) => res.send("<h1>伝説の魔導書 is working!</h1>"));
+  server.listen(3000, () => console.log("Ready to server!"));
+}
+
 const converters = {
   cjp: [require("cjp").generate],
   mhr: [require("genhera").generate],
@@ -199,7 +206,7 @@ client.once("ready", async () => {
         .catch((error) => console.error(error))
     )
   );
-  console.log("Ready!");
+  console.log("Ready to BOT!");
 });
 
 client.login(process.env.DISCORD_TOKEN);
