@@ -10,5 +10,8 @@
     "express": "^4.18.1",
     "genhera": "^1.1.0",
     "submarin-converter-core": "^1.1.8"
+  },
+  "devDependencies": {
+    "node": "v16"
   }
 }
