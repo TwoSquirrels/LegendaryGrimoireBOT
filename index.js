@@ -29,7 +29,7 @@ const converters = {
       });
       if (response.data.status !== 0) throw "translation is not possible";
       return response.data.result;
-    }
+    },
   ],
   grj: [
     async (text, languages) => {
@@ -194,7 +194,9 @@ client.once("ready", async () => {
   ];
   await Promise.all(
     process.env.DISCORD_GUILDS.split(",").map((guild_id) =>
-      client.application.commands.set(data, guild_id)
+      client.application.commands
+        .set(data, guild_id)
+        .catch((error) => console.error(error))
     )
   );
   console.log("Ready!");
