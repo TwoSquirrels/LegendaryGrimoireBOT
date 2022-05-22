@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "cd node_modules/submarin-converter-core/ && npm i && node build.js && cd ../../ && node index.js"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cjp": "^1.2.3",
+    "discord.js": "^13.7.0",
+    "dotenv": "^16.0.1",
+    "genhera": "^1.1.0",
+    "nomlish": "^0.1.0",
+    "submarin-converter-core": "^1.1.8"
+  }
+}
