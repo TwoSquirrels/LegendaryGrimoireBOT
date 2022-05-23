@@ -68,7 +68,7 @@ client.on("interactionCreate", async (interaction) => {
             name: commandName,
             option: {
               nml: () => [options.getInteger("level")],
-              ggt: () => [options.getInteger("languages")],
+              grj: () => [options.getInteger("languages")],
             }[commandName]?.(),
           },
         ],
