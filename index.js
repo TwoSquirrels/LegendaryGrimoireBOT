@@ -26,6 +26,7 @@ const converters = {
   mhr: [require("genhera").generate],
   nml: [
     async (text, level) => {
+      level ??= 2;
       const response = await axios({
         method: "post",
         url: "https://www.nomlish.tk/api/translate",
@@ -40,11 +41,13 @@ const converters = {
   ],
   grj: [
     async (text, languages) => {
+      languages ??= 10;
       const response = await axios.get(
         process.env.RETRANSLATE_API_URL +
           "?text=" +
           encodeURIComponent(text) +
-          (languages === undefined ? "" : "&languages=" + languages)
+          "&languages=" +
+          languages
       );
       if (response.data.status !== "success") throw response.data.error.message;
       return response.data.data.text;
