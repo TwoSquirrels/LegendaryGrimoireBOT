@@ -9,7 +9,6 @@
 
 const dotenv = require("dotenv");
 const axios = require("axios").default;
-const crypto = require("crypto");
 const { Client, Intents } = require("discord.js");
 const Converter = require("submarin-converter-core").SC;
 
@@ -89,15 +88,7 @@ client.on("interactionCreate", async (interaction) => {
         encodeURIComponent(options.getString("bottom") ?? "欲しい！");
       if (options.getBoolean("noalpha")) url += "&noalpha=true";
       if (options.getBoolean("rainbow")) url += "&rainbow=true";
-      await interaction.editReply({
-        files: [
-          {
-            attachment: url,
-            name:
-              crypto.createHash("md5").update(url).digest("base64url") + ".png",
-          },
-        ],
-      });
+      await interaction.editReply(url);
     } else if (commandName === "chain") {
       const steps = (
         options.getString("steps") ?? "nml,nml,nml,grj,mhr,cjp"
