@@ -9,6 +9,7 @@
 
 const dotenv = require("dotenv");
 const axios = require("axios").default;
+const crypto = require("crypto");
 const { Client, Intents } = require("discord.js");
 const Converter = require("submarin-converter-core").SC;
 
@@ -89,7 +90,13 @@ client.on("interactionCreate", async (interaction) => {
       if (options.getBoolean("noalpha")) url += "&noalpha=true";
       if (options.getBoolean("rainbow")) url += "&rainbow=true";
       await interaction.editReply({
-        files: [{ attachment: url, name: encodeURIComponent(url) + ".png" }],
+        files: [
+          {
+            attachment: url,
+            name:
+              crypto.createHash("md5").update(url).digest("base64url") + ".png",
+          },
+        ],
       });
     } else if (commandName === "chain") {
       const steps = (
