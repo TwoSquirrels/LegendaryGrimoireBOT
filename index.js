@@ -81,7 +81,7 @@ client.on("interactionCreate", async (interaction) => {
       await interaction.editReply(converted.text);
     } else if (commandName === "5000") {
       let url =
-        "https://gsapi.cyberrex.jp/image?top=" +
+        "https://gsapi.cbrx.io/image?top=" +
         encodeURIComponent(options.getString("top"));
       url +=
         "&bottom=" +
